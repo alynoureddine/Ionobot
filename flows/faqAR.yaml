@@ -1,0 +1,186 @@
+triggers:
+  - type: meya.wit
+    properties:
+        token: YODQDWW6XIO7HYHEDT242YKY6SKGRWIY
+route: true
+intents:
+    faq_WhatIsMaticAR: WhatIsMatic
+    faq_TransportationAR: Transportation
+    faq_PaymentAR: Payment
+    faq_NationalitiesAR: Nationalities
+    faq_BabySitterAR: BabySitter
+    faq_ServicesIncludeAR: ServicesInclude
+    faq_CancellationFeesAR: CancellationFees
+    faq_IroningServicesAR: IroningServices
+    faq_LegalServiceAR: LegalService
+    faq_Bookink2SPSAR: Bookink2SPS
+    faq_LocationAR: Location
+    faq_FemaleCleanersAR: FemaleCleaners
+    faq_SameCleanerAR: SameCleaner
+    faq_PestControlAR: PestControl
+    faq_PermanentCleanerAR: PermanentCleaner
+    faq_FridayBookingAR: FridayBooking
+    faq_CleaningToolsAR: CleaningTools
+    faq_ExtendVisitAR: ExtendVisit
+    faq_CleanerLateAR: CleanerLate
+    faq_RescheduleAR: Reschedule
+    faq_RiyadhPhoneNumberAR: RiyadhPhoneNumber
+    faq_CoveredAreaAR: CoveredArea
+    faq_PricesAR: Prices
+states:
+    WhatIsMatic:
+        component: meya.text
+        properties:
+            text: ماتك هي منصة رقمية لحجز خدمة التنظيف المنزلي بنظام الساعة
+        return: true
+    Transportation:
+        component: meya.text
+        properties:
+            text: رسوم التوصيل شاملة مع السعر الإجمالي للخدمة
+        return: true
+    Payment:
+        component: meya.text
+        properties:
+            text: يمكنك الدفع عن طريق البطاقة فقط أو يمكنك تحويل الدفع إلى حسابنا المصرفي
+        return: true
+    Nationalities:
+        component: meya.text
+        properties:
+            text: "مقدمي الخدمات لدينا محترفون من جنسيات مختلفة حسب منطقتك ووقتك المناسب، لدينا: الفلبينيين، الإندونيسيين، النيبال، النيجيري، الأوغندي"
+        return: true
+    BabySitter:
+        component: meya.text
+        properties:
+            text: لا يوجد لدينا خدمة المربية المنزلية
+        return: true
+    ServicesInclude:
+        component: meya.text
+        properties:
+            text: الخدمة تشمل تنظيف الغبار و غسيل ومسح الأرضيات والأسطح للغرف والمطابخ ودورات المياه. بالإمكان اضافة طلبات خاصة لتناسب احتياجات منزلك
+        delay:
+            relative: 5
+        return: true
+    CancellationFees:
+        component: meya.text
+        properties:
+            text: رسوم الإلغاء تطبق اذا تم الغاء الزيارة في اقل من ٢٤ ساعة من موعد الزيارة. رسوم الإلغاء هي مبلغ الزيارة بالكام
+        delay:
+            relative: 5
+        return: true
+    IroningServices:
+        component: meya.text
+        properties:
+            text: نحن لا نقدم خدمات كي الملابس
+        delay:
+            relative: 5
+        return: true
+    LegalService:
+        component: meya.text
+        properties:
+            text: جميع شركائنا موردين القوى العاملة مرخصين قانونيا للعمل بمجال التنظيف المنزلي بنظام الساعة
+        delay:
+            relative: 5
+        return: true
+    Bookink2SPS:
+        component: meya.text
+        properties:
+            text: من الممكن حجز أكثر من عاملة واحدة
+        delay:
+            relative: 5
+        return: true
+    Location:
+        component: meya.text
+        properties:
+            text: "مقرنا الرئيسي متواجد في دبي، ويوجد لدينا مكتب في الدمام في بادر لحاضنات التقنية"
+        delay:
+            relative: 5
+        return: true
+    FemaleCleaners:
+        component: meya.text
+        properties:
+            text: جميع العاملات هم اناث
+        delay:
+            relative: 5
+        return: true
+    SameCleaner:
+        component: meya.text
+        properties:
+            text: قد لا نكون قادرين على العثور على نفس المنظفة، ولكن ساعدنا على فهم ما تحتاج تنظيفه بالتحديد حتى نستطيع خدمتك بشكل أفضل
+        delay:
+            relative: 5
+        return: true
+    PestControl:
+        component: meya.text
+        properties:
+            text: لا يوجد لدينا خدمة مكافحة الحشرات، حاليا نوفر خدمة التنظيف المنزلي فقط
+        delay:
+            relative: 5
+        return: true
+    PermanentCleaner:
+        component: meya.text
+        properties:
+            text: للأسف العمالة المتوفرة في تطبيق ماتك تعمل بنظام الساعة فقط. لكن بالإمكان حجز زياراة تنظيف يومية عند عثورك على العاملة المناسبة.
+        delay:
+            relative: 5
+        return: true
+    FridayBooking:
+        component: meya.text
+        properties:
+            text: شكرا لك على اختيار ماتك، نحن لا نقدم خدماتنا يوم الجمعة
+        delay:
+            relative: 5
+        return: true
+    CleaningTools:
+        component: meya.text
+        properties:
+            text: حاليا نوفر ادوات التظيف في دبي فقط بمقابل مبلغ اضافي
+        delay:
+            relative: 5
+        return: true
+    ExtendVisit:
+        component: meya.text
+        properties:
+            text: سوف نتحقق من إمكانية تمديد الزيارة ، لكن من غير المرجح أن نجد ذلك متاحًا.
+        delay:
+            relative: 5
+        return: true
+    CleanerLate:
+        component: meya.text
+        properties:
+            text: نشكرك على اتصالك بنا ، كما تعلم ، فإنه من المستحيل تقريبًا تسليم 10 عمال نظافة في نفس الوقت وهذا هو السبب في احتمالية بدئ الزيارة في وقت مبكر أو متأخر قليلا، ذلك طبعا ضمن فترة زمنية قصيرة. شكرا لتفهمك.
+        delay:
+            relative: 5
+        return: true
+    Reschedule:
+        component: meya.text
+        properties:
+            text: ستؤدي إعادة الجدولة خلال الـ 24 ساعة الأخيرة إلى رسوم زيارة بنسبة 100٪. إذا لم يكن الأمر مستعجلاً، فإننا نفضل أن تتم هذه الزيارة كما هو متفق عليه. إذا كان لا يزال هناك أكثر من 24 ساعة، فيرجى تحديد التاريخ والوقت اللذين ترغب في الحصول على جلسة التنظيف فيهما.
+        delay:
+            relative: 5
+        return: true
+    RiyadhPhoneNumber:
+        component: meya.text
+        properties:
+            text: رقمنا في الرياض هو 0112761638
+        delay:
+            relative: 5
+        return: true
+    CoveredArea:
+        component: meya.text
+        properties:
+            text: >
+                المناطق المتوفرة هي:
+                
+                الرياض، الدمام، اخبار، الظهران، الأحساء، الهفوف،
+                جدة ودبي.
+        delay:
+            relative: 5
+        return: true
+    Prices:
+        component: meya.text
+        properties:
+            text: >
+                تبدأ الخدمة من 40 ريال سعودي لمدة ساعة واحدة
+        delay:
+            relative: 5
+        return: true

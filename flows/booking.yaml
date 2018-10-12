@@ -1,0 +1,125 @@
+triggers:
+  - type: meya.wit
+    properties:
+        token: 7DAEGWX5PAFWNSEJ2VZIV64R4BZKDJP7
+        intent: booking
+states:
+    user_exist_check:
+        component: meya.conditional_exists
+        properties:
+            scope: user
+            key: phone
+        transitions:
+            exists: last_booking
+            notexists: user_notexists_state
+    last_booking:
+        component: lastBooking
+    last_booking_check:
+        component: meya.conditional_exists
+        properties:
+            scope: flow
+            key: last_booking
+        transitions:
+            exists: ask_if_last_booking
+            notexists: single_or_package
+    ask_if_last_booking:
+        component: meya.nlp_yes_no
+        properties:
+            text: >
+                Would you like your booking exactly the same as the previous
+                one? (same schedule, time, address..).
+        transitions:
+            'yes': book_last_booking
+            'no': single_or_package
+    book_last_booking:
+        component: book_last_booking
+        transitions:
+            transfer: transfer
+    single_or_package:
+        component: meya.text_buttons
+        properties:
+            text: >
+                Please choose between "single" and "package".
+            output: booking_type
+            buttons:
+                - text: single
+                  action: day
+                  data:
+                    schedule: 0
+                - text: package
+                  action: schedule
+                - text: cancel
+                  action: cancel
+        transitions:
+            day: day
+            schedule: schedule
+            cancel: end_state
+    schedule:
+        component: meya.text_buttons
+        properties:
+            text: >
+                Please choose the number of sessions per week.
+            buttons:
+                - text: once a week
+                  action: next
+                  data:
+                    schedule: 1
+                - text: twice a week
+                  action: next
+                  data:
+                    schedule: 2
+                - text: back
+                  action: back
+        transitions:
+            back: single_or_package
+            next: day
+    day:
+        component: meya.input_string
+        properties:
+            text: >
+                Please specify on which day(s) of the week you would like the
+                session to take place. Please note that we don't provide sesisons on
+                fridays.
+            output: schedule
+            scope: flow
+    time:
+        component: meya.text_buttons
+        properties:
+            text: >
+                Please specify the time of the session.
+            output: time
+            buttons:
+                - text: morning
+                  action: next
+                - text: afternoon
+                  action: next
+                - text: cancel
+                  action: cancel
+        transitions:
+            cancel: end_state
+            next: transfer
+    transfer:
+        component: human.transfer
+        properties:
+            text: >
+                One moment while I transfer you to a live agent.
+                This may take a few minutes...
+            note: |
+                booking and custoemr's details
+                address - {{ user.address }}
+                booking type - {{ flow.booking_type }}
+                day(s) - {{ flow.schedule }}
+                time - {{ flow.time }}
+            timeout: 3600
+            timeout_flow: end_state2
+    end_state2:
+        return: true
+    user_notexists_state:
+        component: meya.text
+        properties:
+            text: >
+                If you wish to book a cleaner you need to sign in or register.
+                Whenever you would like to sign in, just let me know.
+        return: true
+    end_state:
+        return: true

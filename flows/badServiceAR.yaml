@@ -1,0 +1,22 @@
+triggers:
+  - type: meya.keyword
+    properties:
+        ignorecase: true
+        keyword: bad
+states:
+    complaint:
+        component: meya.input_string
+        properties:
+            text: من فضلك أخبرنا ما هي المشكلة التي تواجهها.
+            output: complaint_details
+            scope: flow
+    transfer:
+        component: human.transfer
+        properties:
+            text: >
+                سننقلك إلى وكيل.
+                شكرا لتبليغنا.
+            note: "{{ flow.complaint_details }}"
+            timeout: 3600  # in seconds
+    end_state:
+        return: true

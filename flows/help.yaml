@@ -1,0 +1,28 @@
+triggers:
+  - type: meya.wit
+    properties:
+        token: 7DAEGWX5PAFWNSEJ2VZIV64R4BZKDJP7
+        intent: help
+states:
+    help:
+        component: meya.text
+        properties:
+            text: >
+                Welcome! I am IonoBot.
+                
+                Here are some useful keywords:
+                
+                "help" - results in this message.
+                
+                "login" or "sign in" - helps me log you in.
+                
+                "register" or "sign up" - to create an account.
+                
+                "bad service" - to report a bad service.
+    help2:
+        component: meya.text
+        properties:
+            text: >
+                To sign in, for example, you can simply say the following:
+                
+                I would like to sign in.

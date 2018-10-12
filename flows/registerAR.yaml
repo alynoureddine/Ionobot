@@ -1,0 +1,54 @@
+triggers:
+  - type: meya.wit
+    properties:
+        token: YODQDWW6XIO7HYHEDT242YKY6SKGRWIY
+        intent: registerAR
+states:
+    first_name:
+        component: meya.input_string
+        properties:
+            text: يرجى ادخال الاسم الاول
+            output: first_name
+            scope: flow
+    last_name:
+        component: meya.input_string
+        properties:
+            text: يرجى إدخال اسم العائلة
+            output: last_name
+            scope: flow
+    phone:
+        component: meya.input_string
+        properties:
+            text: يرجى إدخال رقم الهاتف الخاص بك
+            output: phone
+            scope: flow
+    email:
+        component: meya.input_string
+        properties:
+            text: الرجاء إدخال عنوان البريد الإلكتروني الخاص بك
+            output: email
+            scope: flow
+    address:
+        component: meya.input_string
+        properties:
+            text: الرجاء إدخال عنوانك
+            output: address
+            scope: flow
+    register:
+        component: register
+        transitions:
+            next: end_state
+            retry: phone_retry
+    phone_retry:
+        component: meya.input_string
+        properties:
+            text: يرجى إدخال رقم الهاتف مرة أخرى أو إدخال "إلغاء".
+            output: phone
+            scope: flow
+    register_retry:
+        component: register
+        transitions:
+            next: end_state
+            retry: phone_retry
+    end_state:
+        return: true

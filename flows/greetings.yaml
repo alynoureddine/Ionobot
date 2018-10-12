@@ -1,0 +1,33 @@
+# select a blueprint above or type/paste YAML here
+triggers:
+  - type: meya.wit
+    properties:
+        token: 6HQSWQK2TQD4ZSCU3QFAJBOCGJLC6S7D
+route: true
+intents:
+    hi: hi
+    how_are_you: how_are_you
+    whats_up: whats_up
+states:
+    hi:
+        component: meya.random_text
+        properties:
+            responses:
+                - "Hey there! \U0001F604"
+                - "Hi! \U0001F604"
+                - "Howdy! \U0001F604"
+                - "Hello! \U0001F604"
+        return: true
+    how_are_you:
+        component: meya.random_text
+        properties:
+            responses:
+                - "I'm fine, thanks for asking \U0001F604"
+                - Great! How are you?
+                - Super duper. You?
+        return: true
+    whats_up:
+        component: meya.text
+        properties:
+            text: Not much. What's up with you?
+        return: true

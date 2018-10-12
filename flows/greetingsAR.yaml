@@ -1,0 +1,23 @@
+triggers:
+  - type: meya.wit
+    properties:
+        token: L2EJ6DOLMUUDN5BMIT2FOX7TPC3WVWYA
+route: true
+intents:
+    hi: hi
+    how_are_you: how_are_you
+states:
+    hi:
+        component: meya.random_text
+        properties:
+            responses:
+                - "\U0001F604 مرحبا"
+                - "\U0001F604 أهلا"
+        return: true
+    how_are_you:
+        component: meya.random_text
+        properties:
+            responses:
+                - "\U0001F604 أنا بخير شكرا على السؤال"
+                - عظيم! كيف حالك؟
+        return: true

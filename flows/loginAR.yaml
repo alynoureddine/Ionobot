@@ -1,0 +1,14 @@
+triggers:
+  - type: meya.wit
+    properties:
+        token: YODQDWW6XIO7HYHEDT242YKY6SKGRWIY
+        intent: loginAR
+states:
+    phone:
+        component: meya.input_string
+        properties:
+            text: يرجى إدخال رقم هاتفك لتسجيل الدخول.
+            output: phone
+            scope: flow
+    login:
+        component: loginAR

@@ -1,0 +1,54 @@
+triggers:
+  - type: meya.keyword
+    properties:
+        ignorecase: true
+        keyword: extendar
+states:
+    faq_ExtendVisit:
+        flow: faqAR
+        intent: faq_ExtendVisitAR
+        transitions:
+            ExtendVisit: user_exist_check
+    user_exist_check:
+        component: meya.conditional_exists
+        properties:
+            scope: user
+            key: phone
+        transitions:
+            exists: ExtendVisit_check
+            notexists: user_notexists_state
+    ExtendVisit_check:
+        component: meya.text_buttons
+        properties:
+            text: هل ترغب في تمديد زيارتك؟
+            buttons:
+                - text: نعم
+                  action: continue
+                  data:
+                    cancel: yes
+                - text: لا
+                  action: end
+        transitions:
+            continue: transfer
+            end: end_state
+    transfer:
+        component: human.transfer
+        properties:
+            text: >
+                لحظة واحدة بينما أقوم بوصلك مع وكيل
+
+                قد يستغرق الأمر بضع دقائق
+            note: |
+                Customer wants to apply for a card
+                name - {{ user.full_name }}
+                email - {{ user.email }}
+                cancel - yes
+    end_state2:
+        return: true
+    user_notexists_state:
+        component: meya.text
+        properties:
+            text: الرجاء تسجيل الدخول إذا كنت ترغب في تمديد الزيارة
+        return: true
+    end_state:
+        return: true

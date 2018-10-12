@@ -1,0 +1,53 @@
+triggers:
+  - type: meya.wit
+    properties:
+        token: 7DAEGWX5PAFWNSEJ2VZIV64R4BZKDJP7
+        intent: cancel
+states:
+    faq_CancellationFees:
+        flow: faq
+        intent: faq_CancellationFees
+        transitions:
+            CancellationFees: user_exist_check
+    user_exist_check:
+        component: meya.conditional_exists
+        properties:
+            scope: user
+            key: phone
+        transitions:
+            exists: cancel_check
+            notexists: user_notexists_state
+    cancel_check:
+        component: meya.text_buttons
+        properties:
+            text: would you like to cancel?
+            buttons:
+                - text: yes
+                  action: continue
+                  data:
+                    cancel: yes
+                - text: no
+                  action: end
+        transitions:
+            continue: transfer
+            end: end_state
+    transfer:
+        component: human.transfer
+        properties:
+            text: >
+                One moment while I transfer you to a live agent who will
+                process your credit application. This may take a few minutes...
+            note: |
+                Customer wants to apply for a card
+                name - {{ user.full_name }}
+                email - {{ user.email }}
+                cancel - yes
+    end_state2:
+        return: true
+    user_notexists_state:
+        component: meya.text
+        properties:
+            text: if you wish to cancel a booking sign in
+        return: true
+    end_state:
+        return: true

@@ -1,0 +1,47 @@
+triggers:
+  - type: meya.wit
+    properties:
+        token: 7DAEGWX5PAFWNSEJ2VZIV64R4BZKDJP7
+        intent: badService
+states:
+    complaint:
+        component: meya.text_buttons
+        properties:
+            text: please specify what the complaint exactly is
+            output: complaint
+            buttons:
+                - text: cleaner not showing up
+                  action: next
+                - text: theft
+                  action: next
+                - text: slow cleaner
+                  action: next
+                - text: cleaner is late
+                  action: cleaner_late
+                - text: other
+                  action: next
+                - text: cancel
+                  action: cancel
+        transitions:
+            cleaner_late: cleaner_late
+            next: details
+            cancel: end_state
+    cleaner_late:
+        flow: cleanerLate
+        return: true
+    details:
+        component: meya.input_string
+        properties:
+            text: please provide us with the details.
+            output: complaint_details
+            scope: flow
+    transfer:
+        component: human.transfer
+        properties:
+            text: >
+                We will transfer you to an agent to work on it.
+                Thank you for informing us.
+            note: "{{ flow.complaint }}"
+            timeout: 3600  # in seconds
+    end_state:
+        return: true

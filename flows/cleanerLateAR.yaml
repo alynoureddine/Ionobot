@@ -1,0 +1,67 @@
+triggers:
+  - type: meya.wit
+    properties:
+        token: YODQDWW6XIO7HYHEDT242YKY6SKGRWIY
+        intent: cleanerLateAR
+name: CleanerIsLate
+states:
+    First:
+        component: meya.text
+        properties:
+            text: نشكرك على صبرك، ونحن نتفهم قلقك. لدينا ساعة مفتوحة، على سبيل المثال إذا كانت الزيارة في تمام الساعة الرابعة مساءً، فقد تتلقى العاملة بدءًا من الساعة الثالثة حتى الخامسة مساءً.
+        delay:
+            relative: 5
+    Second:
+        component: meya.text_buttons
+        properties:
+            text: هل العاملة متأخرة أكثر من ساعة؟
+            output: button_click
+            buttons:
+                - text: نعم
+                  action: Yes
+                - text: لا
+                  action: No
+        transitions:
+            Yes: YesMoreThanAnHour
+            No: NoMoreThanAnHour
+        delay:
+            relative: 5
+    NoMoreThanAnHour:
+        component: meya.text
+        properties:
+            text: نشكرك على الرد السريع ، وسأتابع الموضوع معك بعد قليل
+            action: next
+        delay:
+            relative: 900
+        transitions:
+            next: After15Mins
+    After15Mins:
+        component: meya.text_buttons
+        properties:
+            text: أود فقط أن أتأكد، هل تلقيت العاملة أم بعد؟
+            output: button_click
+            buttons:
+                - text: نعم
+                  action: YesReceived
+                - text: لا
+                  action: NoReceived
+        transitions:
+            YesReceived: YesReceived
+            NoReceived: Second
+        delay:
+            relative: 5
+    YesReceived:
+        component: meya.text
+        properties:
+            text: "\U0001F604 هذا رائع، لا تتردد في إخبارنا إذا كنت بحاجة إلى المزيد من المساعدة، فنحن هنا لخدمتك."
+        delay:
+            relative: 5
+        return: true
+    YesMoreThanAnHour:
+        component: human.transfer
+        properties:
+            text: "سأنقلك إلى وكيل."
+            note: "cleaner is more than an hour late"
+            timeout: 60  # in seconds
+        
+        

@@ -1,0 +1,49 @@
+triggers:
+  - type: meya.wit
+    properties:
+        token: YODQDWW6XIO7HYHEDT242YKY6SKGRWIY
+        intent: refundAR
+states:
+    user_exist_check:
+        component: meya.conditional_exists
+        properties:
+            scope: user
+            key: phone
+        transitions:
+            exists: refund_check
+            notexists: user_notexists_state
+    refund_check:
+        component: meya.text_buttons
+        properties:
+            text: هل ترغب في طلب استرداد الأموال؟
+            buttons:
+                - text: نعم
+                  action: continue
+                  data:
+                    refund: yes
+                - text: لا
+                  action: end
+        transitions:
+            continue: transfer
+            end: end_state
+    transfer:
+        component: human.transfer
+        properties:
+            text: >
+                لحظة واحدة بينما أقوم بوصلك مع وكيل
+
+                قد يستغرق الأمر بضع دقائق
+            note: |
+                Customer wants to cancel
+                name - {{ user.first_name }} {{ user.last_name }}
+                email - {{ user.email }}
+                cancel - yes
+    end_state2:
+        return: true
+    user_notexists_state:
+        component: meya.text
+        properties:
+            text: الرجاء تسجيل الدخول إذا كنت ترغب في طلب استرداد الأموال
+        return: true
+    end_state:
+        return: true

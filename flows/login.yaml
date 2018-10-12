@@ -1,0 +1,14 @@
+triggers:
+  - type: meya.wit
+    properties:
+        token: 7DAEGWX5PAFWNSEJ2VZIV64R4BZKDJP7
+        intent: login
+states:
+    phone:
+        component: meya.input_string
+        properties:
+            text: Please enter your phone number to sign in.
+            output: phone
+            scope: flow
+    login:
+        component: login

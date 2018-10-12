@@ -1,0 +1,204 @@
+triggers:
+  - type: meya.wit
+    properties:
+        token: 7DAEGWX5PAFWNSEJ2VZIV64R4BZKDJP7
+route: true
+intents:
+    faq_WhatIsMatic: WhatIsMatic
+    faq_CoveredArea: CoveredArea
+    faq_Transportation: Transportation
+    faq_Payment: Payment
+    faq_Nationalities: Nationalities
+    faq_BabySitter: BabySitter
+    faq_ServicesInclude: ServicesInclude
+    faq_ServicesInclude1: ServicesInclude1
+    faq_CancellationFees: CancellationFees
+    faq_IroningServices: IroningServices
+    faq_LegalService: LegalService
+    faq_Bookink2SPS: Bookink2SPS
+    faq_Location: Location
+    faq_FemaleCleaners: FemaleCleaners
+    faq_SameCleaner: SameCleaner
+    faq_PestControl: PestControl
+    faq_PermanentCleaner: PermanentCleaner
+    faq_FridayBooking: FridayBooking
+    faq_PreferredSP: PreferredSP
+    faq_CleaningTools: CleaningTools
+    faq_ExtendVisit: ExtendVisit
+    faq_CleanerLate: CleanerLate
+    faq_Reschedule: Reschedule
+    faq_RiyadhPhoneNumber: RiyadhPhoneNumber
+    faq_CoveredAreas: CoveredAreas
+    faq_Prices: Prices
+states:
+    WhatIsMatic:
+        component: meya.text
+        properties:
+            text: Matic is a digital platform for booking home cleanining service on hourly basis
+        return: true
+    Transportation:
+        component: meya.text
+        properties:
+            text: Thanks for asking, yes the transportation is included in the full price.
+        return: true
+    Payment:
+        component: meya.text
+        properties:
+            text: You can only pay by card or you can transfer the payment to our bank account
+        return: true
+    Nationalities:
+        component: meya.text
+        properties:
+            text: "Our service providers are professional of different Nationalities depending on your area and your suitable time, we have: Filippinos, Indonesians, Neppal, Nigerian, Ugandan"
+        return: true
+    BabySitter:
+        component: meya.text
+        properties:
+            text: We curretnly don't provide Babysitter services
+        return: true
+    ServicesInclude:
+        component: meya.text
+        properties:
+            text: Our cleaning services include dusting, wiping, vacuum cleaning rooms and bathrooms. You can add specific requests based on your home's needs!
+            action: next
+        delay:
+            relative: 5
+        transitions:
+            next: ServicesInclude1
+    ServicesInclude1:
+        component: meya.text
+        properties:
+            text: We provide high quality cleaning services and 24 hour customer support! We also help you build your schedule with your favorite cleaner.
+        delay:
+            relative: 5
+        return: true
+    CancellationFees:
+        component: meya.text
+        properties:
+            text: Cancellation charges only apply if you cancel your session less than 24 hours before your cleaning session. Fees will be 100% of your total cleaning session.
+        delay:
+            relative: 5
+        return: true
+    IroningServices:
+        component: meya.text
+        properties:
+            text: We curretnly don’t provide Ironing Services
+        delay:
+            relative: 5
+    LegalService:
+        component: meya.text
+        properties:
+            text: All the service providers working with us are legal entities authorized to perform part time home cleaning.
+        delay:
+            relative: 5
+        return: true
+    Bookink2SPS:
+        component: meya.text
+        properties:
+            text: Booking more than a cleaner at the same time is possible.
+        delay:
+            relative: 5
+        return: true
+    Location:
+        component: meya.text
+        properties:
+            text: our main location is in Dubai but our offices in KSA are located in Dammam Al Waha - Badir offices
+        delay:
+            relative: 5
+        return: true
+    FemaleCleaners:
+        component: meya.text
+        properties:
+            text: The staff are professional females
+        delay:
+            relative: 5
+        return: true
+    SameCleaner:
+        component: meya.text
+        properties:
+            text: We might not be able to find you the same cleaner, however help us understand what do you need the cleaner to de specifically so that we find your match. Meanwhile one of of our specialists will check her availability.
+        delay:
+            relative: 5
+        return: true
+    PestControl:
+        component: meya.text
+        properties:
+            text: We currently don't have pest control services, we only offer home cleaning services
+        delay:
+            relative: 5
+        return: true
+    PermanentCleaner:
+        component: meya.text
+        properties:
+            text: We are sorry but the cleaners work on hourly basis and can’t stay over your house, however you can pick the cleaner that you prefer and have her visit you on daily basis.
+        delay:
+            relative: 5
+    FridayBooking:
+        component: meya.text
+        properties:
+            text: Thank you for choosing Matic, we currently don't provide our services on Friday.
+        delay:
+            relative: 5
+        return: true
+    PreferredSP:
+        component: meya.text
+        properties:
+            text: It's great that you were able to find the cleaner that matches the needs of your house. When booking a cleaner, mention it to the agent after you're connected to them.
+        delay:
+            relative: 5
+        return: true
+    CleaningTools:
+        component: meya.text
+        properties:
+            text: We currently bring with us the needed cleaning tools only in Dubai for extra charge
+        delay:
+            relative: 5
+        return: true
+    ExtendVisit:
+        component: meya.text
+        properties:
+            text: We can check the possibility of extending the visit however it's very unlikely that we find that available.
+        delay:
+            relative: 5
+        return: true
+    CleanerLate:
+        component: meya.text
+        properties:
+            text: Thank you for contacting us and we appriciate your time, as you know it's nearly impossible to deliver 10 cleaners at the same time and this is why we have an open window where your service might start a bit earlier or later. Thank you for your understanding
+        delay:
+            relative: 5
+        return: true
+    Reschedule:
+        component: meya.text
+        properties:
+            text: Rescheduling within the last 24 hours will result in 100% visit fees. If it's not urgent, we prefer that this visit goes through as agreed. If there's still more than 24 hours then please specify the date and time that you wish to have the cleaning session on.
+        delay:
+            relative: 5
+        return: true
+    RiyadhPhoneNumber:
+        component: meya.text
+        properties:
+            text: Our number in Riyadh is 0112761638
+        delay:
+            relative: 5
+        return: true
+    CoveredAreas:
+        component: meya.text
+        properties:
+            text: >
+                The covered areas are the following:
+                
+                Riyadh, Dammam, Akhobar, Dharan, Hasa, Hofuf,
+                Jeddah, and Dubai.
+        delay:
+            relative: 5
+        return: true
+    Prices:
+        component: meya.text
+        properties:
+            text: >
+                The service starts from 40 SAR for a one hour time
+        delay:
+            relative: 5
+        return: true
+        
